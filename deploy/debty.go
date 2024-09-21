@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/aws/aws-cdk-go/awscdk/v2"
 	"github.com/aws/aws-cdk-go/awscdk/v2/awsapigateway"
+	"github.com/aws/aws-cdk-go/awscdk/v2/awsdynamodb"
 	"github.com/aws/aws-cdk-go/awscdk/v2/awslambda"
 
 	"github.com/aws/constructs-go/constructs/v10"
@@ -22,12 +23,28 @@ func NewDebtyStack(scope constructs.Construct, id string, props *DebtyStackProps
 
 	// The code that defines your stack goes here
 
+	changesetTable := awsdynamodb.NewTableV2(stack, jsii.String("changesets"), &awsdynamodb.TablePropsV2{
+		PartitionKey: &awsdynamodb.Attribute{
+			Name: jsii.String("groupId"),
+			Type: awsdynamodb.AttributeType_STRING,
+		},
+		SortKey: &awsdynamodb.Attribute{
+			Name: jsii.String("eventDateTime"),
+			Type: awsdynamodb.AttributeType_NUMBER,
+		},
+	})
+
 	mainFunc := awslambda.NewFunction(stack, jsii.String("DebtyServer"), &awslambda.FunctionProps{
 		Runtime: awslambda.Runtime_PROVIDED_AL2(),
 		Code: awslambda.Code_FromAsset(jsii.String("../server"), nil),
 		Handler: jsii.String("bootstrap"),
 		Architecture: awslambda.Architecture_ARM_64(),
+		Environment: &map[string]*string{
+			"CHANGESET_TABLE_NAME": changesetTable.TableName(),
+		},
 	})
+
+	changesetTable.GrantReadWriteData(mainFunc)
 
 	awsapigateway.NewLambdaRestApi(stack, jsii.String("DebtyApi"), &awsapigateway.LambdaRestApiProps{
 		Handler: mainFunc,
