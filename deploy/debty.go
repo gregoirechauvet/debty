@@ -22,21 +22,17 @@ func NewDebtyStack(scope constructs.Construct, id string, props *DebtyStackProps
 
 	// The code that defines your stack goes here
 
-	helloFunc := awslambda.NewFunction(stack, jsii.String("DebtyServer"), &awslambda.FunctionProps{
+	mainFunc := awslambda.NewFunction(stack, jsii.String("DebtyServer"), &awslambda.FunctionProps{
 		Runtime: awslambda.Runtime_PROVIDED_AL2(),
 		Code: awslambda.Code_FromAsset(jsii.String("../server"), nil),
 		Handler: jsii.String("bootstrap"),
 		Architecture: awslambda.Architecture_ARM_64(),
 	})
 
-	api := awsapigateway.NewLambdaRestApi(stack, jsii.String("DebtyApi"), &awsapigateway.LambdaRestApiProps{
-        Handler: helloFunc,
-        Proxy: jsii.Bool(false),
-    })
-
-	// Add a '/hello' resource with a GET method
-    helloResource := api.Root().AddResource(jsii.String("hello"), nil)
-    helloResource.AddMethod(jsii.String("GET"), awsapigateway.NewLambdaIntegration(helloFunc, nil), nil)
+	awsapigateway.NewLambdaRestApi(stack, jsii.String("DebtyApi"), &awsapigateway.LambdaRestApiProps{
+		Handler: mainFunc,
+		Proxy: jsii.Bool(true),
+	})
 
 	return stack
 }
