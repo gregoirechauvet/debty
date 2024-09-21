@@ -3,3 +3,6 @@
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+
+# Build output
+bootstrap
