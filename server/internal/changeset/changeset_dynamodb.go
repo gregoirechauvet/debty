@@ -25,9 +25,12 @@ func NewDynamoDb(client *dynamodb.Client, tableName string) *DynamoDb {
 
 func (db *DynamoDb) InitGroup(ctx context.Context, name string) error {
 	groupCreation := GroupCreation{
-		GroupId:       uuid.New().String(),
-		EventDateTime: db.GetEventDateTime(),
-		Name:          name,
+		BaseOperation: BaseOperation{
+			GroupId:       uuid.New().String(),
+			EventDateTime: db.GetEventDateTime(),
+			Operation:     string(groupCreation),
+		},
+		Name: name,
 	}
 	item, err := attributevalue.MarshalMap(groupCreation)
 	if err != nil {
