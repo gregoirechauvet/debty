@@ -1,0 +1,10 @@
+.expense-form {
+  display: grid;
+  margin: 10px;
+}
+
+.amount-and-date {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}

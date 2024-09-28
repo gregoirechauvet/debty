@@ -1,0 +1,18 @@
+<button id="create-expense-action" mat-fab aria-label="Add a new expense" (click)="createExpense()">
+  <mat-icon>add</mat-icon>
+</button>
+
+<mat-list>
+  @for (expense of expenses$ | async; track expense.id) {
+    <mat-list-item>
+      <div class="expense-row">
+        {{ expense.label }}
+        <span class="spacer"></span>
+        {{ expense.amount | currency }}
+      </div>
+    </mat-list-item>
+    @if (!$last) {
+      <mat-divider></mat-divider>
+    }
+  }
+</mat-list>

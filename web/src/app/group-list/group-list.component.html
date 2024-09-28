@@ -1,3 +1,15 @@
-@for (group of groups; track group.id) {
-    <a routerLink="/groups/{{ group.id }}">{{ group.name }}</a>
-}
+<mat-toolbar>
+  <span>Debty</span>
+</mat-toolbar>
+
+<mat-list role="list">
+  @for (group of groups$ | async; track group.id) {
+    <mat-list-item role="listitem">
+      <a routerLink="/groups/{{ group.id }}">{{ group.name?.value ?? "Untitled" }}</a>
+    </mat-list-item>
+  }
+</mat-list>
+
+<button id="create-group-action" mat-fab aria-label="Create a new group" (click)="createGroup()">
+  <mat-icon>add</mat-icon>
+</button>

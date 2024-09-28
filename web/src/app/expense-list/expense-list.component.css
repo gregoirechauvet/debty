@@ -1,0 +1,13 @@
+#create-expense-action {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.expense-row {
+  display: flex;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -3,9 +3,10 @@ type TimedValue<T> = {
   value: T;
 };
 
-export type Entry = {
-  name: TimedValue<string>;
+export type Expense = {
+  label: TimedValue<string>;
   amount: TimedValue<number>;
+  date: TimedValue<string>;
 };
 
 export type Member = {
@@ -15,6 +16,6 @@ export type Member = {
 export type GroupState = {
   id: string;
   name?: TimedValue<string>;
-  entries?: { [id: string]: Entry };
+  expenses?: { [id: string]: Expense };
   members?: { [id: string]: Member };
 };

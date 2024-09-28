@@ -1,6 +1,48 @@
 <mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button mat-icon-button aria-label="Example icon-button with menu icon">
     <mat-icon routerLink="/">arrow_back</mat-icon>
   </button>
-  <span>My App</span>
+  <span>{{ (state$ | async)?.name?.value }}</span>
+  <span class="spacer"></span>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Group actions">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 </mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <a mat-menu-item routerLink="/groups/{{ groupId }}/edit">
+    <mat-icon>edit</mat-icon>
+    <span>Edit</span>
+  </a>
+  <button mat-menu-item>
+    <mat-icon>delete</mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>
+
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" animationDuration="100ms">
+  <a
+    mat-tab-link
+    routerLink="/groups/{{ groupId }}"
+    routerLinkActive
+    [routerLinkActiveOptions]="{ exact: true }"
+    #expenseLink="routerLinkActive"
+    [active]="expenseLink.isActive"
+  >
+    Expenses
+  </a>
+  <a
+    mat-tab-link
+    routerLink="/groups/{{ groupId }}/activity"
+    routerLinkActive
+    [routerLinkActiveOptions]="{ exact: true }"
+    #activityLink="routerLinkActive"
+    [active]="activityLink.isActive"
+  >
+    Activity
+  </a>
+</nav>
+
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet />
+</mat-tab-nav-panel>

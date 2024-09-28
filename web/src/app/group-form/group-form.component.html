@@ -1,0 +1,25 @@
+<mat-toolbar>
+  <button mat-icon-button aria-label="Go back to group">
+    @if (groupId == null) {
+      <mat-icon routerLink="/">arrow_back</mat-icon>
+    } @else {
+      <mat-icon routerLink="/groups/{{ groupId }}">arrow_back</mat-icon>
+    }
+  </button>
+  <span>
+    @if (groupId == null) {
+      Create group
+    } @else {
+      Edit group
+    }
+  </span>
+</mat-toolbar>
+
+<form [formGroup]="groupForm" (ngSubmit)="onSubmit()" class="group-form">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <button mat-flat-button type="submit">Save</button>
+</form>
