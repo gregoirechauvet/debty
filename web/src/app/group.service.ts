@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { merge, mergeScan, Observable, of, scan, shareReplay, startWith, Subject, switchMap, tap } from "rxjs";
+import { merge, Observable, of, scan, shareReplay, startWith, Subject, switchMap, tap } from "rxjs";
 import { map } from "rxjs/operators";
 import { applyOperationToState, Operation } from "./operations";
 import { GroupState } from "./operations/state";
@@ -193,7 +193,7 @@ export class GroupServiceLocalStorage extends GroupService {
           }
 
           if (value.kind === "OperationAdd") {
-            const operations = state[value.groupId];
+            const operations = state[value.groupId] ?? [];
             return { ...state, [value.groupId]: [...operations, value.operation] };
           }
 
@@ -203,8 +203,13 @@ export class GroupServiceLocalStorage extends GroupService {
         startWith(state),
       );
     }),
-    tap((state) => {
-      localStorage.setItem("state", JSON.stringify(state));
+    tap({
+      next: (state) => {
+        localStorage.setItem("state", JSON.stringify(state));
+      },
+      error: (error) => {
+        console.error(error);
+      },
     }),
     shareReplay(1),
   );
