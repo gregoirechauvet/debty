@@ -8,7 +8,7 @@
       <div class="expense-row">
         {{ expense.label }}
         <span class="spacer"></span>
-        {{ expense.amount | currency }}
+        {{ expense.amount / 100 | currency }}
       </div>
     </mat-list-item>
     @if (!$last) {

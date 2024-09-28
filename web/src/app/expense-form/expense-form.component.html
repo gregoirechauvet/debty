@@ -5,7 +5,7 @@
   <span>Add expense</span>
 </mat-toolbar>
 
-<form [formGroup]="expenseForm" (ngSubmit)="onSubmit()" class="expense-form">
+<form [formGroup]="expenseForm()" (ngSubmit)="onSubmit()" class="expense-form">
   <mat-form-field>
     <mat-label>Title</mat-label>
     <input matInput formControlName="title" />
@@ -25,6 +25,15 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
+
+  <section formGroupName="participants">
+    <mat-label>Split</mat-label>
+    @for (member of members(); track member.id) {
+      <div>
+        <mat-checkbox formControlName="{{ member.id }}">{{ member.name.value }}</mat-checkbox>
+      </div>
+    }
+  </section>
 
   <button mat-flat-button type="submit">Save</button>
 </form>

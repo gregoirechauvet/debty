@@ -10,7 +10,7 @@
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
-  <a mat-menu-item routerLink="/groups/{{ groupId }}/edit">
+  <a mat-menu-item routerLink="/groups/{{ groupId() }}/edit">
     <mat-icon>edit</mat-icon>
     <span>Edit</span>
   </a>
@@ -23,7 +23,7 @@
 <nav mat-tab-nav-bar [tabPanel]="tabPanel" animationDuration="100ms">
   <a
     mat-tab-link
-    routerLink="/groups/{{ groupId }}"
+    routerLink="/groups/{{ groupId() }}"
     routerLinkActive
     [routerLinkActiveOptions]="{ exact: true }"
     #expenseLink="routerLinkActive"
@@ -33,7 +33,7 @@
   </a>
   <a
     mat-tab-link
-    routerLink="/groups/{{ groupId }}/activity"
+    routerLink="/groups/{{ groupId() }}/activity"
     routerLinkActive
     [routerLinkActiveOptions]="{ exact: true }"
     #activityLink="routerLinkActive"

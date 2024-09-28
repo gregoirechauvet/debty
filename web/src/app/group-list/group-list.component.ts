@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { AsyncPipe } from "@angular/common";
 import { Group, GroupService } from "../group.service";
@@ -16,6 +16,7 @@ import { GroupState } from "../operations/state";
   imports: [RouterLink, AsyncPipe, MatFabButton, MatIcon, MatList, MatListItem, MatToolbar],
   templateUrl: "./group-list.component.html",
   styleUrl: "./group-list.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupListComponent implements OnInit {
   // state$!: Observable<GroupState[]>;

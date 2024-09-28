@@ -36,7 +36,16 @@ export abstract class GroupService {
               return applyOperationToState(state, operation);
             }, originalState);
 
-            return [id, finalState];
+            return [
+              id,
+              {
+                ...finalState,
+                members: {
+                  "123": { name: { timestamp: "123", value: "Member 1" } },
+                  "234": { name: { timestamp: "pif", value: "Member 2" } },
+                },
+              },
+            ];
           }),
         );
       }),
@@ -44,16 +53,9 @@ export abstract class GroupService {
   }
 
   getState(id: string): Observable<GroupState> {
-    return this.getOperations(id).pipe(
-      map((operations) => {
-        const originalState: GroupState = {
-          id,
-          expenses: {},
-        };
-
-        return operations.reduce((state, operation) => {
-          return applyOperationToState(state, operation);
-        }, originalState);
+    return this.getGlobalState().pipe(
+      map((state) => {
+        return state[id];
       }),
     );
   }
