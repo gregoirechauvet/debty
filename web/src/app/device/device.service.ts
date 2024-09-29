@@ -1,10 +1,7 @@
-import { Injectable } from "@angular/core";
-
 export abstract class DeviceService {
   abstract get deviceId(): string;
 }
 
-@Injectable()
 export class DeviceServiceLocalStorage extends DeviceService {
   readonly #deviceId: string;
 
@@ -26,9 +23,15 @@ export class DeviceServiceLocalStorage extends DeviceService {
   }
 }
 
-@Injectable()
 export class DeviceServiceTest extends DeviceService {
+  readonly #deviceId: string;
+
+  constructor(deviceId: string) {
+    super();
+    this.#deviceId = deviceId;
+  }
+
   get deviceId(): string {
-    return "6a5fd8e9-6500-47af-bed2-b23c19d05c3b";
+    return this.#deviceId;
   }
 }

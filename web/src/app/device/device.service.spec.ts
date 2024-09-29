@@ -18,16 +18,28 @@ describe("DeviceServiceLocalStorage", () => {
 });
 
 describe("DeviceServiceTest", () => {
+  const deviceId = "f7b27354-aa9d-47be-8865-1b10e41fd589";
   let service: DeviceServiceTest;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DeviceServiceTest],
+      providers: [
+        {
+          provide: DeviceServiceTest,
+          useFactory: () => {
+            return new DeviceServiceTest(deviceId);
+          },
+        },
+      ],
     });
     service = TestBed.inject(DeviceServiceTest);
   });
 
   it("should be created", () => {
     expect(service).toBeTruthy();
+  });
+
+  it("should return the deviceId provided", () => {
+    expect(service.deviceId).toBe(deviceId);
   });
 });
