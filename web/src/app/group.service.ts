@@ -92,10 +92,6 @@ type LocalState = { [id: string]: Operation[] };
 
 @Injectable()
 export class GroupServiceInMemory extends GroupService {
-  override getAllOperations(): Observable<{ [id: string]: Operation[] }> {
-    throw new Error("Method not implemented.");
-  }
-
   groupCreation$ = new Subject<string>();
   operationAdd$ = new Subject<{ groupId: string; operation: Operation }>();
 
@@ -125,8 +121,13 @@ export class GroupServiceInMemory extends GroupService {
       throw new Error("Not implemented");
     }, {}),
     startWith<LocalState>({}),
-    tap((state) => {
-      console.log({ state });
+    tap({
+      next: (state) => {
+        console.log({ state });
+      },
+      error: (error) => {
+        console.error(error);
+      },
     }),
     shareReplay(1),
   );
@@ -153,6 +154,10 @@ export class GroupServiceInMemory extends GroupService {
         return currentState[groupId];
       }),
     );
+  }
+
+  getAllOperations(): Observable<{ [id: string]: Operation[] }> {
+    return this.state$;
   }
 
   saveOperation(groupId: string, operation: Operation): Observable<void> {
