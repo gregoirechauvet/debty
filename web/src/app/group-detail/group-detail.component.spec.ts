@@ -2,7 +2,7 @@ import { provideRouter, Router } from "@angular/router";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { GroupDetailComponent } from "./group-detail.component";
-import { GroupServiceInMemory, GroupService } from "../group.service";
+import { GroupService, GroupServiceInMemory } from "../group.service";
 import { MockPlatformLocation, provideLocationMocks } from "@angular/common/testing";
 import { PlatformLocation } from "@angular/common";
 

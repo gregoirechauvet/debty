@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { GroupActivityComponent } from './group-activity.component';
+import { GroupActivityComponent } from "./group-activity.component";
 
-describe('GroupActivityComponent', () => {
+describe("GroupActivityComponent", () => {
   let component: GroupActivityComponent;
   let fixture: ComponentFixture<GroupActivityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GroupActivityComponent]
+      imports: [GroupActivityComponent],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(GroupActivityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

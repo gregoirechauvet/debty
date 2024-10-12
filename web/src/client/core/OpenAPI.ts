@@ -1,5 +1,5 @@
-import type { HttpResponse } from '@angular/common/http';
-import type { ApiRequestOptions } from './ApiRequestOptions';
+import type { HttpResponse } from "@angular/common/http";
+import type { ApiRequestOptions } from "./ApiRequestOptions";
 
 type Headers = Record<string, string>;
 type Middleware<T> = (value: T) => T | Promise<T>;
@@ -25,31 +25,31 @@ export class Interceptors<T> {
 }
 
 export type OpenAPIConfig = {
-	BASE: string;
-	CREDENTIALS: 'include' | 'omit' | 'same-origin';
-	ENCODE_PATH?: ((path: string) => string) | undefined;
-	HEADERS?: Headers | Resolver<Headers> | undefined;
-	PASSWORD?: string | Resolver<string> | undefined;
-	TOKEN?: string | Resolver<string> | undefined;
-	USERNAME?: string | Resolver<string> | undefined;
-	VERSION: string;
-	WITH_CREDENTIALS: boolean;
-	interceptors: {
-		response: Interceptors<HttpResponse<any>>;
-	};
+  BASE: string;
+  CREDENTIALS: "include" | "omit" | "same-origin";
+  ENCODE_PATH?: ((path: string) => string) | undefined;
+  HEADERS?: Headers | Resolver<Headers> | undefined;
+  PASSWORD?: string | Resolver<string> | undefined;
+  TOKEN?: string | Resolver<string> | undefined;
+  USERNAME?: string | Resolver<string> | undefined;
+  VERSION: string;
+  WITH_CREDENTIALS: boolean;
+  interceptors: {
+    response: Interceptors<HttpResponse<any>>;
+  };
 };
 
 export const OpenAPI: OpenAPIConfig = {
-	BASE: '',
-	CREDENTIALS: 'include',
-	ENCODE_PATH: undefined,
-	HEADERS: undefined,
-	PASSWORD: undefined,
-	TOKEN: undefined,
-	USERNAME: undefined,
-	VERSION: '1.0.0',
-	WITH_CREDENTIALS: false,
-	interceptors: {
-		response: new Interceptors(),
-	},
+  BASE: "",
+  CREDENTIALS: "include",
+  ENCODE_PATH: undefined,
+  HEADERS: undefined,
+  PASSWORD: undefined,
+  TOKEN: undefined,
+  USERNAME: undefined,
+  VERSION: "1.0.0",
+  WITH_CREDENTIALS: false,
+  interceptors: {
+    response: new Interceptors(),
+  },
 };

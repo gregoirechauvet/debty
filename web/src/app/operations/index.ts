@@ -1,6 +1,6 @@
-import { CreateExpenseOperation, apply as applyCreateExpenseOperation } from "./create-expense.operation";
-import { SetExpenseAmountOperation, apply as applySetExpenseAmountOperation } from "./set-expense-amount.operation";
-import { SetGroupNameOperation, apply as applySetGroupNameOperation } from "./set-group-name.operation";
+import { apply as applyCreateExpenseOperation, CreateExpenseOperation } from "./create-expense.operation";
+import { apply as applySetExpenseAmountOperation, SetExpenseAmountOperation } from "./set-expense-amount.operation";
+import { apply as applySetGroupNameOperation, SetGroupNameOperation } from "./set-group-name.operation";
 import { AddMemberOperation, apply as applyAddMemberOperation } from "./add-member.operation";
 import { GroupState } from "./state";
 

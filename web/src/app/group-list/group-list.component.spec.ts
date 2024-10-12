@@ -2,7 +2,7 @@ import { provideRouter } from "@angular/router";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { GroupListComponent } from "./group-list.component";
-import { GroupServiceInMemory, GroupService } from "../group.service";
+import { GroupService, GroupServiceInMemory } from "../group.service";
 
 describe("GroupListComponent", () => {
   let component: GroupListComponent;
