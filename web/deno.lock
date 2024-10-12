@@ -23,7 +23,6 @@
     "npm:karma-jasmine-html-reporter@2.1": "2.1.0_jasmine-core@5.2.0_karma@6.4.4_karma-jasmine@5.1.0__karma@6.4.4",
     "npm:karma-jasmine@5.1": "5.1.0_karma@6.4.4",
     "npm:karma@6.4": "6.4.4",
-    "npm:prettier@^3.3.3": "3.3.3",
     "npm:rxjs@7.8": "7.8.1",
     "npm:tslib@^2.3.0": "2.7.0",
     "npm:typescript@~5.5.2": "5.5.4"
@@ -4708,9 +4707,6 @@
         "source-map-js"
       ]
     },
-    "prettier@3.3.3": {
-      "integrity": "sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew=="
-    },
     "proc-log@4.2.0": {
       "integrity": "sha512-g8+OnU/L2v+wyiVK+D5fA34J7EH8jZ8DDlvwhRCMxmMj7UCBvxiO1mGeN+36JXIKF4zevU4kRBd8lVgG9vLelA=="
     },
@@ -5833,7 +5829,6 @@
         "npm:karma-jasmine-html-reporter@2.1",
         "npm:karma-jasmine@5.1",
         "npm:karma@6.4",
-        "npm:prettier@^3.3.3",
         "npm:rxjs@7.8",
         "npm:tslib@^2.3.0",
         "npm:typescript@~5.5.2"
